@@ -4,6 +4,7 @@ import cors from "cors"
 import helmet from "helmet"
 import env from "./environments/environments"
 import { connectionDB } from "./config/connectDB"
+import equipmentRoutes from "./routes/equipment.routes"
 
 class Server {
     app: Application
@@ -31,7 +32,7 @@ class Server {
     }
 
     routes(): void {
-        this.app.get("/", (_req: any, res: any) => res.send("Hello World!"))
+        this.app.use("/api/equipment", equipmentRoutes)
     }
 
     listen(): void {
