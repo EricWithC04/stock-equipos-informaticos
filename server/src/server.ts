@@ -2,6 +2,8 @@ import express, { Application } from "express"
 import morgan from "morgan"
 import cors from "cors"
 import helmet from "helmet"
+import env from "./environments/environments"
+import { connectionDB } from "./config/connectDB"
 
 class Server {
     app: Application
@@ -10,15 +12,15 @@ class Server {
 
     constructor ( ) {
         this.app = express()
-        this.port = 3000
-        this.host = 'localhost'
+        this.port = parseInt(env.PORT)
+        this.host = env.HOST
         this.connectDB()
         this.middlewares()
         this.routes()
     }
 
-    connectDB(): void {
-        console.log('Conectado a la base de datos');
+    async connectDB(): Promise<void> {
+        await connectionDB()
     }
 
     middlewares(): void {
