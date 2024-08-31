@@ -5,6 +5,7 @@ import helmet from "helmet"
 import env from "./environments/environments"
 import { connectionDB } from "./config/connectDB"
 import equipmentRoutes from "./routes/equipment.routes"
+import brandRoutes from "./routes/brand.routes"
 
 class Server {
     app: Application
@@ -33,6 +34,7 @@ class Server {
 
     routes(): void {
         this.app.use("/api/equipment", equipmentRoutes)
+        this.app.use("/api/brand", brandRoutes)
     }
 
     listen(): void {
