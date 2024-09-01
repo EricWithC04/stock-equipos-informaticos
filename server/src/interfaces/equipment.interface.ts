@@ -3,6 +3,6 @@ export interface Equipment {
     name: string
     model: string
     serial: string
-    brand: string
-    category: string
+    brand?: string
+    category?: string
 }

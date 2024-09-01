@@ -7,8 +7,6 @@ class EquipmentModel extends Model<Equipment> implements Equipment {
     public name!: string;
     public model!: string;
     public serial!: string;
-    public brand!: string;
-    public category!: string;
 }
 
 EquipmentModel.init({
@@ -24,12 +22,6 @@ EquipmentModel.init({
         type: DataTypes.STRING
     },
     serial: {
-        type: DataTypes.STRING
-    },
-    brand: {
-        type: DataTypes.STRING
-    },
-    category: {
         type: DataTypes.STRING
     }
 }, { sequelize, tableName: 'equipments' })

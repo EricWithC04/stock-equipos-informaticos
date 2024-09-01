@@ -1,4 +1,5 @@
 import { sequelize } from "./db";
+import { associations } from "./relations";
 
 export const connectionDB = async () => {
     sequelize.authenticate()
@@ -8,6 +9,14 @@ export const connectionDB = async () => {
             sequelize.sync({ force: true })
                 .then(() => {
                     console.log('Base de datos sincronizada');
+                })
+
+            associations()
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
                 })
     })
     .catch(err => {
