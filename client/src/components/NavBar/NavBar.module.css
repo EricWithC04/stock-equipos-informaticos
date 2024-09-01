@@ -1,0 +1,42 @@
+.main-container {
+    display: flex;
+    background-color: #f2f5f6;
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    width: 240px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container h1 {
+    margin-bottom: 20px;
+}
+
+.content-container {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.options {
+    width: 100%;
+    font-size: 18px
+}
+
+.options div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px
+}
+
+.options div:hover {
+    cursor: pointer;
+    background-color: #f2f5f6;
+}
