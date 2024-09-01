@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.table-container {
+    width: 80%;
+    max-width: 800px;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.table-container thead {
+    border-bottom: 1px solid #0002;
+}
+
+.table-container thead tr th {
+    padding: 10px 0;
+    color: #70707a;
+    font-weight: 700;
+}
+
+.table-container tbody tr td {
+    text-align: center;
+    padding: 32px 0;
+    border-bottom: 1px solid #0002;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.actions div {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #70707a33
+}
+
+.actions div:hover {
+    cursor: pointer;
+}

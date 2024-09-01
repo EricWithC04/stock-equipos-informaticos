@@ -1,8 +1,8 @@
 export interface Equipment {
     id?: number
-    name: string
     model: string
     serial: string
+    stock: number
     brand?: string
     category?: string
 }

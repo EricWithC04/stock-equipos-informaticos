@@ -6,7 +6,7 @@ export const connectionDB = async () => {
         .then(() => {
             console.log('Conectado a la base de datos');
 
-            sequelize.sync({ force: true })
+            sequelize.sync({ alter: true })
                 .then(() => {
                     console.log('Base de datos sincronizada');
                 })
