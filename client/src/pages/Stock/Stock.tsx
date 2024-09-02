@@ -1,8 +1,20 @@
+import { useState, useEffect } from "react"
 import NavBar from "../../components/NavBar/NavBar"
 import { GoPencil, GoTrash } from "react-icons/go"
 import styles from "./Stock.module.css"
+import { IEquipment } from "../../interfaces/equipment.interface"
 
 const Stock = () => {
+
+    const [stock, setStock] = useState([])
+
+    useEffect(() => {
+        fetch("http://localhost:3000/api/equipment")
+            .then((res) => res.json())
+            .then((data) => setStock(data))
+            .catch((err) => console.log(err))
+    }, [])
+
     return (
         <NavBar>
             <div className={styles["container"]}>
@@ -18,36 +30,27 @@ const Stock = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Notebook</td>
-                            <td>ROG Strix G16</td>
-                            <td>Asus</td>
-                            <td>AS1234</td>
-                            <td>50</td>
-                            <td className={styles["actions"]}>
-                                <div>
-                                    <GoPencil />
-                                </div>
-                                <div>
-                                    <GoTrash />
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Notebook</td>
-                            <td>Ideapad 3</td>
-                            <td>Lenovo</td>
-                            <td>LV9876</td>
-                            <td>100</td>
-                            <td className={styles["actions"]}>
-                                <div>
-                                    <GoPencil />
-                                </div>
-                                <div>
-                                    <GoTrash />
-                                </div>
-                            </td>
-                        </tr>
+                        {
+                            stock.map((equip: IEquipment) => {
+                                return (
+                                    <tr>
+                                        <td>{equip.category.name}</td>
+                                        <td>{equip.model}</td>
+                                        <td>{equip.brand.name}</td>
+                                        <td>{equip.serial}</td>
+                                        <td>{equip.stock}</td>
+                                        <td className={styles["actions"]}>
+                                            <div>
+                                                <GoPencil />
+                                            </div>
+                                            <div>
+                                                <GoTrash />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }
                     </tbody>
                 </table>
             </div>
