@@ -12,6 +12,7 @@ export const associations = () => {
             EquipmentModel.belongsTo(BrandModel, {
                 foreignKey: 'brandId',
                 targetKey: 'id',
+                as: 'brand'
             })
             
             CategoryModel.hasMany(EquipmentModel, {
@@ -21,6 +22,7 @@ export const associations = () => {
             EquipmentModel.belongsTo(CategoryModel, {
                 foreignKey: 'categoryId',
                 targetKey: 'id',
+                as: 'category'
             })
             resolve({ message: "Relaciones establecidas" });
         } catch (err) {

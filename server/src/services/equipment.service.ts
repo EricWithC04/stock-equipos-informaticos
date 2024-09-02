@@ -1,4 +1,6 @@
 import { Equipment } from "../interfaces/equipment.interface";
+import { BrandModel } from "../models/brand.model";
+import { CategoryModel } from "../models/category.model";
 import { EquipmentModel } from "../models/equipment.model";
 
 class EquipmentService {
@@ -6,7 +8,21 @@ class EquipmentService {
     constructor() {}
 
     public async getEquipments() {
-        const equipment = await EquipmentModel.findAll();
+        const equipment = await EquipmentModel.findAll({
+            attributes: ['id', 'model', 'serial', 'stock'],
+            include: [
+                { 
+                    model: BrandModel,
+                    as: "brand",
+                    attributes: ['name'],
+                },
+                { 
+                    model: CategoryModel,
+                    as: "category",
+                    attributes: ['name'],
+                },
+            ]
+        });
         return equipment;
     }
 
