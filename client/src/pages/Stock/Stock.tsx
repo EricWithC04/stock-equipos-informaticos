@@ -10,7 +10,10 @@ const Stock = () => {
 
     useEffect(() => {
         fetch("http://localhost:3000/api/equipment")
-            .then((res) => res.json())
+            .then((res) => {
+                if (res.status === 200) return res.json()
+                else return []
+            })
             .then((data) => setStock(data))
             .catch((err) => console.log(err))
     }, [])

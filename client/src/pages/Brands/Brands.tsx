@@ -14,7 +14,10 @@ const Brands = () => {
 
     useEffect(() => {
         fetch("http://localhost:3000/api/brand")
-            .then((res) => res.json())
+            .then((res) => {
+                if (res.status === 200) return res.json()
+                else return []
+            })
             .then((data) => setBrands(data))
             .catch((err) => console.log(err))
     }, [])
@@ -58,13 +61,13 @@ const Brands = () => {
                 </form>
                 <div className={styles["brands-container"]}>
                     {
-                        brands.map((brand) => {
+                        brands.length ? brands.map((brand) => {
                             return (
                                 <h3>
                                     {brand.name}
                                 </h3>
                             )
-                        })
+                        }) : <p>Aún no hay marcas registradas</p>
                     }
                 </div>
             </div>

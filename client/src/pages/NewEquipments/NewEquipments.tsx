@@ -27,6 +27,7 @@ const NewEquipments = () => {
 
     const [brands, setBrands] = useState<Array<IBrand>>([])
     const [categories, setCategories] = useState<Array<ICategory>>([])
+    const [fetchError, setFetchError] = useState<{ message: string } | null>(null)
     const [newEquipment, setNewEquipment] = useState<INewEquipment>({
         model: "",
         serial: "",
@@ -37,7 +38,12 @@ const NewEquipments = () => {
 
     useEffect(() => {
         fetch("http://localhost:3000/api/brand")
-            .then((res) => res.json())
+            .then((res) => {
+                if (res.status === 404) {
+                    setFetchError({ message: "Aún no hay marcas registradas" })
+                    return []
+                } else return res.json()
+            })
             .then((data) => setBrands(data))
             .catch((err) => console.log(err))
         
@@ -137,7 +143,7 @@ const NewEquipments = () => {
                             <button type="submit">Agregar</button>
                         </form>
                     </div>
-                ) : <h1>Cargando...</h1>
+                ) : <h1>{fetchError ? `Error: ${fetchError.message}` : "Cargando..."}</h1>
             }
         </NavBar>
     )
