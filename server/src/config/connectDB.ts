@@ -1,5 +1,6 @@
 import { sequelize } from "./db";
 import { associations } from "./relations";
+import { seedAll } from "../seeds";
 
 export const connectionDB = async () => {
     sequelize.authenticate()
@@ -7,8 +8,10 @@ export const connectionDB = async () => {
             console.log('Conectado a la base de datos');
 
             sequelize.sync({ alter: true })
-                .then(() => {
+                .then(async () => {
                     console.log('Base de datos sincronizada');
+
+                    await seedAll()
                 })
 
             associations()
