@@ -8,6 +8,7 @@ class UserModel extends Model<User> implements User {
     public email!: string;
     public password!: string;
     public role!: 'user' | 'admin';
+    public state!: boolean
 }
 
 UserModel.init({
@@ -27,6 +28,10 @@ UserModel.init({
     },
     role: {
         type: DataTypes.ENUM('user', 'admin')
+    },
+    state: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true
     }
 }, { sequelize, tableName: 'users' })
 
