@@ -7,6 +7,7 @@ import { connectionDB } from "./config/connectDB"
 import equipmentRoutes from "./routes/equipment.routes"
 import brandRoutes from "./routes/brand.routes"
 import categoryRoutes from "./routes/category.routes"
+import userRouter from "./routes/user.routes"
 
 class Server {
     app: Application
@@ -37,6 +38,7 @@ class Server {
         this.app.use("/api/equipment", equipmentRoutes)
         this.app.use("/api/brand", brandRoutes)
         this.app.use("/api/category", categoryRoutes)
+        this.app.use("/api/user", userRouter)
     }
 
     listen(): void {

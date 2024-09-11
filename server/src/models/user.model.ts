@@ -21,10 +21,11 @@ UserModel.init({
         type: DataTypes.STRING
     },
     email: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        unique: true
     },
     password: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
     },
     role: {
         type: DataTypes.ENUM('user', 'admin')
