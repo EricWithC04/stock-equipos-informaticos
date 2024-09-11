@@ -8,6 +8,7 @@ import equipmentRoutes from "./routes/equipment.routes"
 import brandRoutes from "./routes/brand.routes"
 import categoryRoutes from "./routes/category.routes"
 import userRouter from "./routes/user.routes"
+import authRouter from "./routes/auth.routes"
 
 class Server {
     app: Application
@@ -39,6 +40,7 @@ class Server {
         this.app.use("/api/brand", brandRoutes)
         this.app.use("/api/category", categoryRoutes)
         this.app.use("/api/user", userRouter)
+        this.app.use("/auth", authRouter)
     }
 
     listen(): void {

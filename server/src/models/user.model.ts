@@ -28,7 +28,8 @@ UserModel.init({
         type: DataTypes.STRING
     },
     role: {
-        type: DataTypes.ENUM('user', 'admin')
+        type: DataTypes.ENUM('user', 'admin'),
+        defaultValue: 'user'
     },
     state: {
         type: DataTypes.BOOLEAN,
