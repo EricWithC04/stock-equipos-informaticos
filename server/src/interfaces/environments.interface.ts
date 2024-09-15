@@ -3,6 +3,7 @@ import { Dialect } from "sequelize"
 export interface Environments {
     PORT: string
     HOST: string
+    SECRET: string
     DB: {
         NAME: string
         USER: string
