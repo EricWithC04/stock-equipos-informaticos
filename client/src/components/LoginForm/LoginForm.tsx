@@ -48,7 +48,7 @@ const LoginForm = () => {
                 .then(res => res.json())
                 .then(data => {
                     localStorage.setItem('token', data.token)
-                    navigate('/')
+                    navigate('/stock')
                 })
                 .catch(err => console.log(err))
         }

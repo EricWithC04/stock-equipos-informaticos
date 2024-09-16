@@ -1,5 +1,6 @@
 import { User } from "../interfaces/user.interface";
 import { UserModel } from "../models/user.model";
+import { comparePassword } from "../utils/comparePassword";
 
 class UserService {
 
@@ -16,7 +17,18 @@ class UserService {
     }
 
     async getUserByEmailAndPassword(email: string, password: string) {
-        const user = await UserModel.findOne({ where: { email, password } });
+        const user = await UserModel.findOne({ where: { email } });
+
+        if (!user) {
+            return null;
+        }
+
+        const isValidPassword = await comparePassword(password, user.password);
+
+        if (!isValidPassword) {
+            return null;
+        }
+
         return user;
     }
 
