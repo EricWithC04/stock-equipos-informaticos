@@ -12,7 +12,7 @@ const LoginForm = () => {
             <label htmlFor="password" >Contraseña</label>
             <input type="text" name="password" placeholder='Ingresa tu contraseña'/>
 
-            <input type="submit" value="Registrarse" className={styles["login-button"]} />
+            <input type="submit" value="Iniciar Sesión" className={styles["login-button"]} />
             <p className={styles["login-text"]}>¿No tienes una cuenta? <a href="/register">Registrate</a></p>
         </form>
     )

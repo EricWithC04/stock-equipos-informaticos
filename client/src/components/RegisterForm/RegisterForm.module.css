@@ -49,3 +49,10 @@
 .register-text a:hover {
     text-decoration: underline
 }
+
+.register-error {
+    padding: 4px;
+    background-color: red;
+    color: white !important;
+    border-radius: 5px
+}
