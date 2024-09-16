@@ -4,6 +4,7 @@ import { RiComputerLine } from "react-icons/ri"
 import { MdOutlineInventory2 } from "react-icons/md"
 import { PiTrademark } from "react-icons/pi"
 import { FaRegPlusSquare } from "react-icons/fa"
+import { CiLogout } from "react-icons/ci"
 import styles from "./NavBar.module.css"
 
 const NavBar = ({ children }: { children: React.ReactNode }) => {
@@ -31,6 +32,11 @@ const NavBar = ({ children }: { children: React.ReactNode }) => {
                         <RiComputerLine />
                         <p>Categorias</p>
                     </div>
+                </div>
+                <hr />
+                <div className={styles["logout"]} onClick={() => {localStorage.clear(); navigate("/")}}>
+                    <CiLogout />
+                    <p>Cerrar Sesión</p>
                 </div>
             </nav>
             <div className={styles["content-container"]}>

@@ -1,13 +1,14 @@
 .main-container {
     display: flex;
     background-color: #f2f5f6;
+    min-height: 100vh !important
 }
 
 .nav-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
+    min-height: 100% !important;
     width: 240px;
     background-color: #fff;
     padding: 20px;
@@ -18,6 +19,11 @@
     margin-bottom: 20px;
 }
 
+.nav-container hr {
+    width: 100%;
+    margin-bottom: 5px
+}
+
 .content-container {
     flex-grow: 1;
     padding: 20px;
@@ -25,7 +31,8 @@
 
 .options {
     width: 100%;
-    font-size: 18px
+    font-size: 18px;
+    height: 100%
 }
 
 .options div {
@@ -39,4 +46,18 @@
 .options div:hover {
     cursor: pointer;
     background-color: #f2f5f6;
+}
+.logout {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.logout:hover {
+    cursor: pointer;
+    background-color: #e4eaec;
 }
