@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 interface UserContextProps {
     login?: () => void
@@ -17,6 +17,16 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     const [userData, setUserData] = useState({
         isLogged: false,
     });
+
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        if (token) {
+            setUserData({
+                ...userData,
+                isLogged: true
+            })
+        }
+    }, [])
 
     const login = () => {
         setUserData({

@@ -6,7 +6,7 @@ const PrivateRoutes = () => {
     const { userData } = useUserContext()
 
     return (
-        userData && userData.isLogged ? <Outlet /> : <Navigate to="/" replace={true} />
+        userData && userData.isLogged ? <Outlet /> : <Navigate to="/login" replace={true} />
     )
 }
 

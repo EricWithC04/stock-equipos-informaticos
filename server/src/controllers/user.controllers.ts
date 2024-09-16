@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import UserService from "../services/user.service";
+import { hashPassword } from "../utils/hashString";
 import { User } from "../interfaces/user.interface";
 
 class UserControllers {
@@ -39,8 +40,11 @@ class UserControllers {
 
     async ctrlCreateUser(req: Request, res: Response) {
         try {
-            const data: User = req.body;
-            const user = await UserService.createUser(data);
+            const { password, ...data }: User = req.body;
+
+            const hashedPassword = await hashPassword(password)
+
+            const user = await UserService.createUser({ ...data, password: hashedPassword });
         
             if (!user) {
                 return res.status(500).send({
