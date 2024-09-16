@@ -1,0 +1,13 @@
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.modal-form input {
+    border: 1px solid black;
+    padding: 8px 16px;
+    border-radius: 4px;
+}

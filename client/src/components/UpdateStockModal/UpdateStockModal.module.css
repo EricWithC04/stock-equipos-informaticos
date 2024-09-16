@@ -1,16 +1,31 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
 .container-modal {
     position: absolute;
-    top: 30vh;
+    top: 20vh;
     left: 40vw;
     border: none;
     padding: 0;
     min-height: 200px;
     min-width: 300px;
+    outline: 1px solid black;
+    border-radius: 6px;
 }
 
 .container-modal[open] {
     scale: 1;
-    transition: scale 0.1s ease-in-out;
+    transition: scale 0.18s ease-in-out;
 
     @starting-style {
         scale: 0;
@@ -42,5 +57,14 @@
 }
 
 .modal-buttons button {
+    border: none;
+    padding: 6px 12px;
+    background-color: #19191b;
+    color: white;
+    border-radius: 4px;
+}
 
+.modal-buttons button:hover {
+    cursor: pointer;
+    background-color: #222;
 }

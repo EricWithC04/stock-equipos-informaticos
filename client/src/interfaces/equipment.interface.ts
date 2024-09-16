@@ -1,5 +1,5 @@
 export interface IEquipment {
-    id: number
+    id?: number
     model: string
     serial: string
     stock: number
