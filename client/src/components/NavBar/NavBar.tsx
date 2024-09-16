@@ -1,4 +1,5 @@
 import React from "react"
+import { useUserContext } from "../../context/UserContext"
 import { useNavigate } from "react-router-dom"
 import { RiComputerLine } from "react-icons/ri"
 import { MdOutlineInventory2 } from "react-icons/md"
@@ -10,6 +11,8 @@ import styles from "./NavBar.module.css"
 const NavBar = ({ children }: { children: React.ReactNode }) => {
 
     const navigate = useNavigate()
+
+    const { logout } = useUserContext() as { logout: () => void }
 
     return (
         <div className={styles["main-container"]}>
@@ -34,7 +37,11 @@ const NavBar = ({ children }: { children: React.ReactNode }) => {
                     </div>
                 </div>
                 <hr />
-                <div className={styles["logout"]} onClick={() => {localStorage.clear(); navigate("/")}}>
+                <div className={styles["logout"]} onClick={() => {
+                    localStorage.clear() 
+                    logout() 
+                    navigate("/")}}
+                >
                     <CiLogout />
                     <p>Cerrar Sesión</p>
                 </div>

@@ -34,9 +34,9 @@ const Stock = () => {
                     </thead>
                     <tbody>
                         {
-                            stock.map((equip: IEquipment) => {
+                            stock.map((equip: IEquipment, index: number) => {
                                 return (
-                                    <tr>
+                                    <tr key={index}>
                                         <td>{equip.category.name}</td>
                                         <td>{equip.model}</td>
                                         <td>{equip.brand.name}</td>

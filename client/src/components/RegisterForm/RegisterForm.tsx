@@ -83,12 +83,12 @@ const RegisterForm = () => {
                 <p className={styles["register-error"]}>{errors.email}</p> : null }
                 
             <label htmlFor="password" >Contraseña</label>
-            <input type="text" name="password" placeholder='Ingresa tu contraseña' onChange={handleChange}/>
+            <input type="password" name="password" placeholder='Ingresa tu contraseña' onChange={handleChange}/>
             { errorsActive && errors.hasOwnProperty("password") ? 
                 <p className={styles["register-error"]}>{errors.password}</p> : null }
                 
             <label htmlFor="confirmPassword" >Confirmar Contraseña</label>
-            <input type="text" name="confirmPassword" placeholder='Confirma tu contraseña' onChange={handleChange}/>
+            <input type="password" name="confirmPassword" placeholder='Confirma tu contraseña' onChange={handleChange}/>
             { errorsActive && errors.hasOwnProperty("confirmPassword") ? 
                 <p className={styles["register-error"]}>{errors.confirmPassword}</p> : null }
 

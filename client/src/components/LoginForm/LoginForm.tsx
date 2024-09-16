@@ -3,10 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import styles from './LoginForm.module.css'
 import { LoginValidateErrors } from './interface/login-validate-errors.interface'
 import { emailRegex } from '../../utils/emailRegex'
+import { useUserContext } from '../../context/UserContext'
 
 const LoginForm = () => {
 
     const navigate = useNavigate()
+
+    const { login } = useUserContext() as { login: () => void }
 
     const [formData, setFormData] = useState({
         email: '',
@@ -48,6 +51,7 @@ const LoginForm = () => {
                 .then(res => res.json())
                 .then(data => {
                     localStorage.setItem('token', data.token)
+                    login()
                     navigate('/stock')
                 })
                 .catch(err => console.log(err))
@@ -67,7 +71,7 @@ const LoginForm = () => {
                 <p className={styles["login-error"]}>{errors.email}</p> : null }
                 
             <label htmlFor="password" >Contraseña</label>
-            <input type="text" name="password" placeholder='Ingresa tu contraseña' onChange={handleChange} />
+            <input type="password" name="password" placeholder='Ingresa tu contraseña' onChange={handleChange} />
             { errorsActive && errors.hasOwnProperty("password") ? 
                 <p className={styles["login-error"]}>{errors.password}</p> : null }
 
