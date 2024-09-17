@@ -55,6 +55,20 @@ class EquipmentController {
 
         res.status(201).json(equipment);
     }
+
+    public deleteEquipment = async (req: Request, res: Response) => {
+        const { id } = req.params;
+        const equipment = await EquipmentService.deleteEquipment(parseInt(id));
+
+        if (!equipment) {
+            return res.status(500).send({
+                status: 500,
+                message: 'No se ha podido eliminar el equipo!'
+            })
+        }
+
+        res.status(201).json({ message: "Equipo eliminado correctamente" });
+    }
 }
 
 export default new EquipmentController()

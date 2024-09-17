@@ -7,7 +7,8 @@ const {
     getEquipments,
     getOneEquipment,
     createEquipment,
-    updateEquipment
+    updateEquipment,
+    deleteEquipment
 } = EquipmentController
 
 const router = Router();
@@ -16,5 +17,6 @@ router.get("/", getEquipments);
 router.get("/:id", getOneEquipment);
 router.post("/", equipmentSchema, validator, createEquipment);
 router.put("/:id", updateEquipment);
+router.delete("/:id", deleteEquipment);
 
 export default router

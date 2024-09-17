@@ -41,6 +41,10 @@ class EquipmentService {
         return equipment;
     }
 
+    public async deleteEquipment(id: number) {
+        const equipment = await EquipmentModel.destroy({ where: { id } });
+        return equipment;
+    }
 }
 
 export default new EquipmentService()
