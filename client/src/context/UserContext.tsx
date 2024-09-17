@@ -16,6 +16,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
     const [userData, setUserData] = useState({
         isLogged: false,
+        role: 'user'
     });
 
     useEffect(() => {
@@ -26,6 +27,21 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
                 isLogged: true
             })
         }
+        fetch('http://localhost:3000/auth/user-data', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${token}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                setUserData({
+                    ...userData,
+                    role: data.role
+                })
+            })
+            .catch(err => console.log(err))
     }, [])
 
     const login = () => {
