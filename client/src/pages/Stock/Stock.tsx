@@ -4,22 +4,14 @@ import { GoPencil, GoTrash } from "react-icons/go"
 import styles from "./Stock.module.css"
 import { IEquipment } from "../../interfaces/equipment.interface"
 import UpdateStockModal from "../../components/UpdateStockModal/UpdateStockModal"
+import { useUpdateStockContext } from "../../context/UpdateStockContext"
 
 const Stock = () => {
 
+    const { selectEquipment } = useUpdateStockContext()
+
     const [stock, setStock] = useState([])
-    const [selectedEquipment, setSelectedEquipment] = useState<IEquipment>({
-        id: 0,
-        model: "",
-        brand: {
-            name: ""
-        },
-        category: {
-            name: ""
-        },
-        serial: "",
-        stock: 0
-    })
+    
     const [showModal, setShowModal] = useState<boolean>(false)
 
     useEffect(() => {
@@ -34,7 +26,7 @@ const Stock = () => {
 
     return (
         <NavBar>
-            <UpdateStockModal isOpen={showModal} handleClose={() => setShowModal(false)} equipmentData={selectedEquipment} />
+            <UpdateStockModal isOpen={showModal} handleClose={() => setShowModal(false)}/>
             <div className={styles["container"]}>
                 <table className={styles["table-container"]}>
                     <thead>
@@ -58,7 +50,7 @@ const Stock = () => {
                                         <td>{equip.serial}</td>
                                         <td>{equip.stock}</td>
                                         <td className={styles["actions"]}>
-                                            <div onClick={() => {setShowModal(true); setSelectedEquipment(equip)}}>
+                                            <div onClick={() => {setShowModal(true); selectEquipment!(equip)}}>
                                                 <GoPencil />
                                             </div>
                                             <div>

@@ -1,14 +1,17 @@
-import { IEquipment } from '../../interfaces/equipment.interface'
+import { useUpdateStockContext } from '../../context/UpdateStockContext'
 import styles from './UpdateStockForm.module.css'
 
-const UpdateStockForm = ({ category, model, brand, serial, stock }: IEquipment) => {
+const UpdateStockForm = () => {
+
+    const { selectedEquipment } = useUpdateStockContext()
+
     return (
         <form className={styles["modal-form"]}>
-            <input type="text" value={category.name} />
-            <input type="text" value={model} />
-            <input type="text" value={brand.name} />
-            <input type="text" value={serial} />
-            <input type="text" value={stock} />
+            <input type="text" value={selectedEquipment!.category.name} />
+            <input type="text" value={selectedEquipment!.model} />
+            <input type="text" value={selectedEquipment!.brand.name} />
+            <input type="text" value={selectedEquipment!.serial} />
+            <input type="number" value={selectedEquipment!.stock} />
         </form>
     )
 }

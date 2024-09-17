@@ -1,14 +1,12 @@
-import { IEquipment } from '../../interfaces/equipment.interface'
 import UpdateStockForm from '../UpdateStockForm/UpdateStockForm'
 import styles from './UpdateStockModal.module.css'
 
 interface UpdateStockModalProps {
     isOpen: boolean
     handleClose: () => void
-    equipmentData: IEquipment
 }
 
-const UpdateStockModal = ({ isOpen, handleClose, equipmentData }: UpdateStockModalProps) => {
+const UpdateStockModal = ({ isOpen, handleClose }: UpdateStockModalProps) => {
     return (
         <div className={styles["modal-overlay"]} style={{ display: isOpen ? 'flex' : 'none'}}>
             <dialog open={isOpen} className={styles["container-modal"]}>
@@ -17,13 +15,7 @@ const UpdateStockModal = ({ isOpen, handleClose, equipmentData }: UpdateStockMod
                     <p onClick={handleClose}>x</p>
                 </div>
                 <div className={styles["modal-body"]}>
-                    <UpdateStockForm 
-                        category={equipmentData.category}
-                        model={equipmentData.model}
-                        brand={equipmentData.brand}
-                        serial={equipmentData.serial}
-                        stock={equipmentData.stock}
-                    />
+                    <UpdateStockForm />
                 </div>
                 <div className={styles["modal-buttons"]}>
                     <button onClick={handleClose}>Close</button>
