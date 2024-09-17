@@ -5,7 +5,9 @@ interface UserContextProps {
     logout?: () => void
     userData?: {
         isLogged: boolean
+        role: string
     }
+    setUserData?: ({ isLogged, role }: { isLogged: boolean, role: string }) => void  
 }
 
 const UserContext = createContext<UserContextProps>({});
@@ -27,21 +29,6 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
                 isLogged: true
             })
         }
-        fetch('http://localhost:3000/auth/user-data', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `${token}`
-            }
-        })
-            .then(res => res.json())
-            .then(data => {
-                setUserData({
-                    ...userData,
-                    role: data.role
-                })
-            })
-            .catch(err => console.log(err))
     }, [])
 
     const login = () => {
@@ -59,7 +46,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     return (
-        <UserContext.Provider value={{ login, logout, userData }}>
+        <UserContext.Provider value={{ login, logout, userData, setUserData }}>
             {children}
         </UserContext.Provider>
     )

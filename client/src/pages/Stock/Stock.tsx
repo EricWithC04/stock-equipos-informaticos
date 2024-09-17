@@ -5,10 +5,12 @@ import styles from "./Stock.module.css"
 import { IEquipment } from "../../interfaces/equipment.interface"
 import UpdateStockModal from "../../components/UpdateStockModal/UpdateStockModal"
 import { useUpdateStockContext } from "../../context/UpdateStockContext"
+import { useUserContext } from "../../context/UserContext"
 
 const Stock = () => {
 
     const { selectEquipment } = useUpdateStockContext()
+    const { userData, setUserData } = useUserContext()
 
     const [stock, setStock] = useState([])
     
@@ -24,16 +26,40 @@ const Stock = () => {
             .catch((err) => console.log(err))
     }, [])
 
-    const handleDeleteEquipment = (id: number) => {
-        fetch(`http://localhost:3000/api/equipment/${id}`, {
-            method: "DELETE",
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        fetch('http://localhost:3000/auth/user-data', {
+            method: 'GET',
             headers: {
-                "Content-Type": "application/json"
+                'Content-Type': 'application/json',
+                'Authorization': `${token}`
             }
         })
-        .then(res => res.json())
-        .then(_data => window.location.reload())
-        .catch(err => console.log(err))
+            .then(res => res.json())
+            .then(data => {
+                setUserData!({
+                    ...userData,
+                    isLogged: token ? true : false,
+                    role: data.role
+                })
+            })
+            .catch(err => console.log(err))
+    }, [])
+
+    const handleDeleteEquipment = (id: number) => {
+        if (userData!.role === "admin") {
+            fetch(`http://localhost:3000/api/equipment/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .then(res => res.json())
+                .then(_data => window.location.reload())
+                .catch(err => console.log(err))
+        } else {
+            alert("La opción de eliminar solo está disponible para administradores")
+        }
     } 
 
     return (
