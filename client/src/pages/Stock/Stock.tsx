@@ -24,6 +24,18 @@ const Stock = () => {
             .catch((err) => console.log(err))
     }, [])
 
+    const handleDeleteEquipment = (id: number) => {
+        fetch(`http://localhost:3000/api/equipment/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(res => res.json())
+        .then(_data => window.location.reload())
+        .catch(err => console.log(err))
+    } 
+
     return (
         <NavBar>
             <UpdateStockModal isOpen={showModal} handleClose={() => setShowModal(false)}/>
@@ -53,7 +65,7 @@ const Stock = () => {
                                             <div onClick={() => {setShowModal(true); selectEquipment!(equip)}}>
                                                 <GoPencil />
                                             </div>
-                                            <div>
+                                            <div onClick={() => handleDeleteEquipment(equip.id!)}>
                                                 <GoTrash />
                                             </div>
                                         </td>
