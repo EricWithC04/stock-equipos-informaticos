@@ -1,4 +1,5 @@
 import UpdateStockForm from '../UpdateStockForm/UpdateStockForm'
+import { useUpdateStockContext } from '../../context/UpdateStockContext'
 import styles from './UpdateStockModal.module.css'
 
 interface UpdateStockModalProps {
@@ -7,6 +8,9 @@ interface UpdateStockModalProps {
 }
 
 const UpdateStockModal = ({ isOpen, handleClose }: UpdateStockModalProps) => {
+
+    const { handleUpdateStock } = useUpdateStockContext()
+
     return (
         <div className={styles["modal-overlay"]} style={{ display: isOpen ? 'flex' : 'none'}}>
             <dialog open={isOpen} className={styles["container-modal"]}>
@@ -19,7 +23,7 @@ const UpdateStockModal = ({ isOpen, handleClose }: UpdateStockModalProps) => {
                 </div>
                 <div className={styles["modal-buttons"]}>
                     <button onClick={handleClose}>Close</button>
-                    <button onClick={handleClose}>Update</button>
+                    <button onClick={handleUpdateStock}>Update</button>
                 </div>
             </dialog>
         </div>

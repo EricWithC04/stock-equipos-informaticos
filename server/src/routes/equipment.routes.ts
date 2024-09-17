@@ -13,6 +13,6 @@ const router = Router();
 router.get("/", getEquipments);
 router.get("/:id", getOneEquipment);
 router.post("/", createEquipment);
-router.put("/", updateEquipment);
+router.put("/:id", updateEquipment);
 
 export default router
