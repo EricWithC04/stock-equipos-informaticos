@@ -4,8 +4,15 @@ import { CategoryModel } from "../models/category.model";
 import { EquipmentModel } from "../models/equipment.model";
 
 class EquipmentService {
+    private static instance: EquipmentService;
+    private constructor() {}
 
-    constructor() {}
+    public static getInstance(): EquipmentService {
+        if (!EquipmentService.instance) {
+            EquipmentService.instance = new EquipmentService();
+        }
+        return EquipmentService.instance;
+    }
 
     public async getEquipments() {
         const equipment = await EquipmentModel.findAll({
@@ -47,4 +54,4 @@ class EquipmentService {
     }
 }
 
-export default new EquipmentService()
+export default EquipmentService.getInstance()

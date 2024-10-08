@@ -3,8 +3,15 @@ import { UserModel } from "../models/user.model";
 import { comparePassword } from "../utils/comparePassword";
 
 class UserService {
+    private static instance: UserService;
+    private constructor() {}
 
-    constructor() {}
+    public static getInstance(): UserService {
+        if (!UserService.instance) {
+            UserService.instance = new UserService();
+        }
+        return UserService.instance; 
+    }
 
     async getUsers() {
         const users = await UserModel.findAll();
@@ -55,4 +62,4 @@ class UserService {
     }
 }
 
-export default new UserService()
+export default UserService.getInstance()

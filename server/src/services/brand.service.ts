@@ -2,8 +2,15 @@ import { Brand } from "../interfaces/brand.interface";
 import { BrandModel } from "../models/brand.model";
 
 class BrandService {
+    private static instance: BrandService
+    private constructor() {}
 
-    constructor() {}
+    public static getInstance(): BrandService {
+        if (!BrandService.instance) {
+            BrandService.instance = new BrandService();
+        }
+        return BrandService.instance;
+    }
 
     public async getBrands() {
         const brands = await BrandModel.findAll();
@@ -26,4 +33,4 @@ class BrandService {
     }
 }
 
-export default new BrandService()
+export default BrandService.getInstance()

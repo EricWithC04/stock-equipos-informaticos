@@ -2,8 +2,15 @@ import { Category } from "../interfaces/category.interface";
 import { CategoryModel } from "../models/category.model";
 
 class CategoryService {
+    private static instance: CategoryService
+    private constructor() {}
 
-    constructor() {}
+    public static getInstance(): CategoryService {
+        if (!CategoryService.instance) {
+            CategoryService.instance = new CategoryService();
+        }
+        return CategoryService.instance;
+    }
 
     public async getCategories() {
         const categories = await CategoryModel.findAll();
@@ -26,4 +33,4 @@ class CategoryService {
     }
 }
 
-export default new CategoryService()
+export default CategoryService.getInstance()

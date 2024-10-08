@@ -2,8 +2,15 @@ import { Branch } from "../interfaces/branch.interface";
 import { BranchModel } from "../models/branch.model";
 
 class BranchService {
+    private static instance: BranchService
+    private constructor() {}
 
-    constructor() {}
+    public static getInstance(): BranchService {
+        if (!BranchService.instance) {
+            BranchService.instance = new BranchService();
+        }
+        return BranchService.instance;
+    }
 
     public async getBranchs() {
         const branchs = await BranchModel.findAll();
@@ -26,4 +33,4 @@ class BranchService {
     }
 }
 
-export default new BranchService()
+export default BranchService.getInstance()
